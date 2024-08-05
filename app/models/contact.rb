@@ -3,5 +3,8 @@ class Contact < ApplicationRecord
   has_many :phone_numbers, dependent: :destroy
   has_many :addresses, dependent: :destroy
 
-  validates :full_name, presence: true
+  validates :full_name, presence: true, uniqueness: { case_sensitive: false }
+  validates :full_name, length: { minimum: 3 }
+  validates :email, format: { with: /\A.*@.*\.com\z/ }
+
 end
