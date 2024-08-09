@@ -8,6 +8,5 @@ class Contact < ApplicationRecord
 
   validates :full_name, presence: true, uniqueness: { case_sensitive: false }
   validates :full_name, length: { minimum: 3 }
-  validates :email, format: { with: /\A.*@.*\.com\z/ }
-
+  # validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
 end
