@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact = Contact.new(contact_params)
+    @contact = current_user.contacts.new(contact_params)
     if @contact.save
       redirect_to root_path, notice: 'su contacto ha sido agregado!'
     else
@@ -18,7 +18,7 @@ class ContactsController < ApplicationController
   end
 
   def edit
-    @contact = Contact.find(params[:id])
+    @contact = Contact.find(params[:id]) if @contact.nil?
   end
 
   def update
