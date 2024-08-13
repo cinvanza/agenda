@@ -1,4 +1,8 @@
 class ContactsController < ApplicationController
+  def index
+    @contacts = current_user.contacts
+  end
+
   def show
     @contact = Contact.find(params[:id])
   end
@@ -53,4 +57,5 @@ class ContactsController < ApplicationController
   def contact_params
     params.require(:contact).permit(:full_name, :nickname, :email, :birthday,
       phone_numbers_attributes: [:id, :number, :_destroy] )
+  end
 end
