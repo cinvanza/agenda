@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center">Contacts</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @contacts.each do |contact| %>
+            <tr>
+              <td><%= contact.full_name %></td>
+              <td><%= contact.nickname %></td>
+              <td><%= contact.contact_email %></td>
+              <td><%= contact.phone_numbers %></td>
+              <td>
+                <%= link_to "Show", contact, class: "btn btn-primary" %>
+                <%= link_to "Edit", edit_contact_path(contact), class: "btn btn-secondary" %>
+                <%= link_to "Delete", contact, data: {turbo_method: :delete, confirm: "Are you sure?"}, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= link_to "New Contact", new_contact_path, class: "btn btn-success" %>
+    </div>
+  </div>
+</div>

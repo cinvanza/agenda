@@ -9,24 +9,18 @@
 #   end
 require 'faker'
 
-# Crear un usuario
-user = User.create!(
-  email: 'usuario@ejemplo.com',
-  password: 'password123',
-  password_confirmation: 'password123'
-)
+# Asegúrate de tener al menos un usuario en la base de datos
+user = User.first || User.create(email: "test@example.com", password: "password")
 
-# Crear 20 contactos
 20.times do
   contact = Contact.create!(
     user: user,
     full_name: Faker::Name.name,
     nickname: Faker::Name.first_name,
-    # email: Faker::Internet.email(domain: 'example.com'),
-    birthday: Faker::Date.birthday(min_age: 18, max_age: 65) # Coma añadida aquí
+    contact_email: Faker::Internet.email,
+    birthday: Faker::Date.birthday(min_age: 18, max_age: 65)
   )
 
-  # Crear una dirección para cada contacto
   Address.create!(
     contact: contact,
     street: Faker::Address.street_address,
@@ -38,13 +32,10 @@ user = User.create!(
     longitude: Faker::Address.longitude
   )
 
-  # Crear 1-3 números de teléfono para cada contacto
-  rand(1..3).times do
-    PhoneNumber.create!(
-      contact: contact,
-      number: Faker::PhoneNumber.phone_number.gsub(/\D/, '').to_i
-    )
-  end
+  PhoneNumber.create!(
+    contact: contact,
+    number: Faker::PhoneNumber.subscriber_number(length: 10)
+  )
 end
 
-puts "Seed completado: 1 usuario, 20 contactos con direcciones y números de teléfono creados."
+puts "20 contacts have been created!"
