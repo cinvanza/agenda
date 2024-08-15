@@ -1,6 +1,14 @@
 class ContactsController < ApplicationController
   def index
     @contacts = current_user.contacts
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        contacts.full_name ILIKE :query
+        OR contacts.nickname ILIKE :query
+        OR contacts.contact_email ILIKE :query
+      SQL
+      @contacts = @contacts.where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def show
@@ -41,15 +49,7 @@ class ContactsController < ApplicationController
   end
 
   def search
-    @contacts = Contact.all
-    if params[:query].present?
-      sql_subquery = <<~SQL
-        contacts.full_name ILIKE :query
-        OR contacts.nickname ILIKE :query
-        OR contacts.email ILIKE :query
-      SQL
-      @contacts = @contacts.where(sql_subquery, query: "%#{params[:query]}%")
-    end
+
   end
 
   private
