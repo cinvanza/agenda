@@ -9,6 +9,14 @@ class ContactsController < ApplicationController
       SQL
       @contacts = @contacts.where(sql_subquery, query: "%#{params[:query]}%")
     end
+
+    # Generar los marcadores solo para los contactos con direcciones geocodificadas
+    @markers = @contacts.joins(:addresses).merge(Address.geocoded).map do |contact|
+      {
+        lat: contact.addresses.first.latitude, 
+        lng: contact.addresses.first.longitude
+      }
+    end
   end
 
   def show
@@ -56,6 +64,7 @@ class ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact).permit(:full_name, :nickname, :email, :birthday,
-      phone_numbers_attributes: [:id, :number, :_destroy] )
+      phone_numbers_attributes: [:id, :number, :_destroy],
+      address_attributes: [:id, :street, :city, :state, :country, :postal_code, :_destroy])
   end
 end

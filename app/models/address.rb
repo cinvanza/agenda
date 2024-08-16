@@ -8,3 +8,5 @@ class Address < ApplicationRecord
     [street, city, state, country].compact.join(', ')
   end
 end
+
+
