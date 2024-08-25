@@ -13,10 +13,7 @@
           <p class="card-text"><strong>Nickname:</strong> <%= @contact.nickname %></p>
           <p class="card-text"><strong>Email:</strong> <%= @contact.contact_email %></p>
           <p class="card-text"><strong>Phone Numbers:</strong> <%= @contact.phone_numbers.map(&:number).join(", ") %></p>
-
-
-
-          
+          <p class="card-text"><strong>Addresses:</strong><br><%= @contact.addresses.map { |address| "#{address.street}, #{address.city}, #{address.state}, #{address.country}, #{address.postal_code}" }.join("<br>").html_safe %></p>
         </div>
       </div>
     </div>

@@ -12,3 +12,11 @@
 @import "pages/index";
 
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
+
+
+.img-fluid {
+  height: 100%;
+  width: auto;
+  object-fit: cover; /* Ajusta la imagen para que ocupe todo el contenedor, cortando si es necesario */
+  overflow: hidden; /* Asegura que el contenedor no se desborde */
+}

@@ -13,7 +13,7 @@ class ContactsController < ApplicationController
     # Generar los marcadores solo para los contactos con direcciones geocodificadas
     @markers = @contacts.joins(:addresses).merge(Address.geocoded).map do |contact|
       {
-        lat: contact.addresses.first.latitude, 
+        lat: contact.addresses.first.latitude,
         lng: contact.addresses.first.longitude
       }
     end
@@ -26,6 +26,7 @@ class ContactsController < ApplicationController
   def new
     @contact = Contact.new
     @contact.phone_numbers.build
+    @contact.addresses.build
   end
 
   def create
@@ -64,7 +65,7 @@ class ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact).permit(:full_name, :nickname, :email, :birthday,
-      phone_numbers_attributes: [:id, :number, :_destroy],
+      phone_numbers_attributes: [:id, :number, :kind, :_destroy],
       address_attributes: [:id, :street, :city, :state, :country, :postal_code, :_destroy])
   end
 end
