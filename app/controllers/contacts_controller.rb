@@ -27,6 +27,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new
     @contact.phone_numbers.build
     @contact.addresses.build
+    redirect_to contact_path(@contact) if @contact.nil?
   end
 
   def create
