@@ -43,3 +43,8 @@
         <%= address_form.select :kind, Address.kinds.keys, {}, class: "form-control" %>
       </div>
   </div>
+
+  <div class="form-actions">
+    <%= form.submit "Save", class: "btn btn-primary" %>
+    <%= link_to "Cancel", contacts_path, class: "btn btn-secondary" %>
+  </div>

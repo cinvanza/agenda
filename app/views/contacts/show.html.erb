@@ -1,21 +1,3 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h1 class="text-center">Contact</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><%= @contact.full_name %></h5>
-          <p class="card-text"><strong>Nickname:</strong> <%= @contact.nickname %></p>
-          <p class="card-text"><strong>Email:</strong> <%= @contact.contact_email %></p>
-          <p class="card-text"><strong>Phone Numbers:</strong> <%= @contact.phone_numbers.map(&:number).join(", ") %></p>
-          <p class="card-text"><strong>Addresses:</strong><br><%= @contact.addresses.map { |address| "#{address.street}, #{address.city}, #{address.state}, #{address.country}, #{address.postal_code}" }.join("<br>").html_safe %></p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="contacts-grid">
+  <%= render 'contacts/info-window', contact: @contact %>
 </div>
