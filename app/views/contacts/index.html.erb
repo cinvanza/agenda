@@ -17,6 +17,12 @@
       <% end %>
     </div>
 
+    <div class="row">
+      <div class="col-12">
+        <%= link_to "New Contact", new_contact_path, class: "btn btn-success" %>
+      </div>
+    </div>
+
   <div class="row">
     <div class="col-12">
       <table class="table table-striped">
@@ -50,11 +56,7 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-12">
-      <%= link_to "New Contact", new_contact_path, class: "btn btn-success" %>
-    </div>
-  </div>
+
 
   <div id="map" style="width: 100%; height: 600px;"
     data-controller="map"

@@ -33,7 +33,7 @@ class ContactsController < ApplicationController
   def create
     @contact = current_user.contacts.new(contact_params)
     if @contact.save
-      redirect_to root_path, notice: 'su contacto ha sido agregado!'
+      redirect_to contacts_path, notice: 'su contacto ha sido agregado!'
     else
       render :new
     end
@@ -55,7 +55,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact = Contact.find(params[:id])
     @contact.destroy
-    redirect_to root_path, notice: 'su contacto ha sido eliminado!'
+    redirect_to contacts_path, notice: 'su contacto ha sido eliminado!'
   end
 
   def search

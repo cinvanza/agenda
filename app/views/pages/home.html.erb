@@ -8,6 +8,12 @@
       <div class="banner-center">
         <h2>Todos tus contactos en un solo lugar</h2>
       </div>
+
+      <% if user_signed_in? %>
+        <div class="mt-4">
+          <%= link_to "Ver Contactos", contacts_path, class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
